@@ -53,6 +53,7 @@ CVP_DEVICES_EVPN:
       - 'leaf1_EVPN_underlay'
       - 'leaf1_interface'
       - 'leaf1_VXLAN'
+      - 'MLAG-Left'
   - fqdn: 'leaf2'
     parentContainerName: 'Leaf'
     configlets:
@@ -61,6 +62,7 @@ CVP_DEVICES_EVPN:
       - 'leaf2_EVPN_underlay'
       - 'leaf2_interface'
       - 'leaf2_VXLAN'
+      - 'MLAG-Right'
   - fqdn: 'leaf3'
     parentContainerName: 'Leaf'
     configlets:
@@ -69,6 +71,7 @@ CVP_DEVICES_EVPN:
       - 'leaf3_EVPN_underlay'
       - 'leaf3_interface'
       - 'leaf3_VXLAN'
+      - 'MLAG-Right'
   - fqdn: 'leaf4'
     parentContainerName: 'Leaf'
     configlets:
@@ -77,3 +80,4 @@ CVP_DEVICES_EVPN:
       - 'leaf4_EVPN_underlay'
       - 'leaf4_interface'
       - 'leaf4_VXLAN'
+      - 'MLAG-Left'

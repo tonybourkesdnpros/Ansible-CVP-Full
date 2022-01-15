@@ -32,6 +32,12 @@ CVP_DEVICES_EVPN:
       - '{{ host }}_interface'
 {% if 'leaf' in host %}
       - '{{ host }}_VXLAN'
+{% if 'Odd' in underlay[host]['MLAG']%}
+      - 'MLAG-Left'
+{%endif%}
+{% if 'Even' in underlay[host]['MLAG']%}
+      - 'MLAG-Right'
+{%endif%}
 {%endif%}
 {% endif %}
 {% endfor %}
