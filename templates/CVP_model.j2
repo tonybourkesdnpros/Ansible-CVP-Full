@@ -1,0 +1,32 @@
+path: {%raw%}"{{lookup('env','PWD')}}"{%endraw%} 
+
+CVP_CONFIGLETS_EVPN:
+{% for host in underlay %}
+{% if host != 'global' %}
+  {{host}}_EVPN_underlay: {%raw %}"{{lookup('file','{{path}}/configs/{% endraw %}{{host}}/{{host}}_EVPN_underlay.cfg')}}"
+  {{host}}_interface: {%raw %}"{{lookup('file','{{path}}/configs/{% endraw %}{{host}}/{{host}}_interface.cfg')}}"
+{% endif %}
+{% if 'leaf' in host %}
+  {{host}}_VXLAN: {%raw %}"{{lookup('file','{{path}}/configs/{% endraw %}{{host}}/{{host}}_VXLAN.cfg')}}"
+{% endif %}
+{% endfor %}
+
+  {# eBGP-Underlay-spine1-DC1: "{{lookup('file','{{path}}/configlets/eBGP-VXLAN/eBGP_underlay_spine1-DC1.cfg')}}" #}
+
+
+CVP_DEVICES_EVPN:
+{% for host in underlay %}
+  - fqdn: '{{host}}'
+{% if 'leaf' in host %}
+    parentContainerName: 'Leafs'
+{% endif %}
+{% if 'spine' in host %}
+    parentContainerName: 'Spines'
+{% endif %}
+    configlets:
+      - 'ATD-INFRA'
+      - 'leaf1-base'
+      - '{{ host }}_EVPN_underlay.cfg'
+      - '{{ host }}_interface.cfg'
+      - '{{ host }}_VXLAN.cfg'
+{% endfor %}
