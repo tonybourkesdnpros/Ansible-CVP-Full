@@ -15,18 +15,23 @@ CVP_CONFIGLETS_EVPN:
 
 
 CVP_DEVICES_EVPN:
+
 {% for host in underlay %}
+{% if host != 'global' %}
   - fqdn: '{{host}}'
 {% if 'leaf' in host %}
-    parentContainerName: 'Leafs'
+    parentContainerName: 'Leaf'
 {% endif %}
 {% if 'spine' in host %}
-    parentContainerName: 'Spines'
+    parentContainerName: 'Spine'
 {% endif %}
     configlets:
       - 'ATD-INFRA'
-      - 'leaf1-base'
-      - '{{ host }}_EVPN_underlay.cfg'
-      - '{{ host }}_interface.cfg'
-      - '{{ host }}_VXLAN.cfg'
+      - '{{ host }}-base'
+      - '{{ host }}_EVPN_underlay'
+      - '{{ host }}_interface'
+{% if 'leaf' in host %}
+      - '{{ host }}_VXLAN'
+{%endif%}
+{% endif %}
 {% endfor %}
