@@ -22,14 +22,24 @@ CVP_DEVICES_EVPN:
 {% if host != 'global' %}
   - fqdn: '{{host}}'
 {% if 'leaf' in host %}
-    parentContainerName: 'Leaf'
+{% if 'DC1' in host %}
+    parentContainerName: 'Leaf-DC1'
+{% endif %}
+{% if 'DC2' in host %}
+    parentContainerName: 'Leaf-DC2'
+{% endif %}
 {% endif %}
 {% if 'spine' in host %}
-    parentContainerName: 'Spine'
+{% if 'DC1' in host %}
+    parentContainerName: 'Spine-DC1'
+{% endif %}
+{% if 'DC2' in host %}
+    parentContainerName: 'Spine-DC2'
+{% endif %}
 {% endif %}
     configlets:
       - 'ATD-INFRA'
-      - '{{ host }}-base'
+      - '{{ host }}-BASE'
       - '{{ host }}_EVPN_underlay'
       - '{{ host }}_interface'
 {% if 'leaf' in host %}
