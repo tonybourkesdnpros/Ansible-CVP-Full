@@ -1,6 +1,8 @@
 path: {%raw%}"{{lookup('env','PWD')}}"{%endraw%} 
 
 CVP_CONFIGLETS_EVPN:
+  MLAG-Left: {%raw %}"{{lookup('file','{{path}}{% endraw %}/configs/Static/MLAG-Left.cfg')}}"
+  MLAG-Right: {%raw %}"{{lookup('file','{{path}}{% endraw %}/configs/Static/MLAG-Right.cfg')}}"
 {% for host in underlay %}
 {% if host != 'global' %}
   {{host}}_EVPN_underlay: {%raw %}"{{lookup('file','{{path}}/configs/{% endraw %}{{host}}/{{host}}_EVPN_underlay.cfg')}}"

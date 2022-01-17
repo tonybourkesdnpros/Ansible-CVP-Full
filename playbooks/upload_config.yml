@@ -11,7 +11,7 @@
       arista.cvp.cv_configlet_v3:
         configlets: "{{ CVP_CONFIGLETS_EVPN }}"
         state: present 
-    - name: Apply configlets
-      arista.cvp.cv_device_v3:
-        devices: "{{ CVP_DEVICES_EVPN }}"
-        apply_mode: strict
+    # - name: Apply configlets
+    #   arista.cvp.cv_device_v3:
+    #     devices: "{{ CVP_DEVICES_EVPN }}"
+    #     apply_mode: strict

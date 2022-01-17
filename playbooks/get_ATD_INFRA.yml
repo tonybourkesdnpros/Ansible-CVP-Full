@@ -8,7 +8,7 @@
     configlet_url: "https://192.168.0.5/cvpservice/configlet/getConfigletByName.do?name="
     configlet_name: "ATD-INFRA"
     
-    CVP_password: "arista2138"
+    CVP_password: "arista567z"
 
   tasks:
   - name: Authenticate and grab token
